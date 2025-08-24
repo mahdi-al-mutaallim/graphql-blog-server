@@ -1,0 +1,14 @@
+{
+  "extends": "@total-typescript/tsconfig/tsc/no-dom/app",
+	"compilerOptions": {
+    "types": ["node"],
+		"baseUrl": "./",
+    "outDir": "./dist",
+		"paths": {
+      "@/*": ["./src/*"],
+			"@prisma/*": ["./prisma/*"]
+		},
+	},
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

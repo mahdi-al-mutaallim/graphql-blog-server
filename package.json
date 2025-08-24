@@ -1,0 +1,33 @@
+{
+	"name": "graphql-blog-server",
+	"main": "src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "tsdown",
+		"check-types": "tsc -b",
+		"compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+		"dev": "tsx --env-file=.env --watch src/index.ts",
+		"start": "node --env-file=.env dist/index.js",
+		"db:push": "prisma db push",
+		"db:studio": "prisma studio",
+		"db:generate": "prisma generate",
+		"db:migrate": "prisma migrate dev"
+	},
+	"dependencies": {
+		"@apollo/server": "^5.0.0",
+		"@prisma/client": "^6.13.0",
+		"bcryptjs": "^3.0.2",
+		"graphql": "^16.11.0",
+		"jsonwebtoken": "^9.0.2"
+	},
+	"devDependencies": {
+		"@total-typescript/ts-reset": "^0.6.1",
+		"@total-typescript/tsconfig": "^1.0.4",
+		"@types/jsonwebtoken": "^9.0.10",
+		"@types/node": "^22.13.11",
+		"prisma": "^6.13.0",
+		"tsdown": "^0.12.9",
+		"tsx": "^4.19.2",
+		"typescript": "^5.8.2"
+	}
+}
