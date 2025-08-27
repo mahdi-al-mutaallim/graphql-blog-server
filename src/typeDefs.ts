@@ -22,19 +22,25 @@ type Post {
   createdAt: String!
   author: User!
 }
-type CreateUserReturn {
-access_token:String!
+
+type AuthPayload {
+ message: String!
+ access_token:String
 }
+
 type Query {
-  me: User
+  profile(userId: ID!): Profile
   users: [User!]!
   user(id: ID!): User
   posts: [Post!]!
   post(id: ID!): Post
 }
+
 type Mutation {
-  createUser(name: String!, email: String!, password: String!): CreateUserReturn!
-  }
+  signup(name: String!, email: String!, password: String!, bio:String): AuthPayload
+  signin(email: String!, password: String!):AuthPayload
+}
+
 `
 
 export default typeDefs;
