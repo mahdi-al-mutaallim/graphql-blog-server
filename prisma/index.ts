@@ -4,6 +4,6 @@ import type { GlobalOmitConfig } from "./generated/internal/prismaNamespace.js";
 
 const prisma = new PrismaClient();
 
-export { PrismaClient, type GlobalOmitConfig, type DefaultArgs }
+export { PrismaClient, type GlobalOmitConfig, type DefaultArgs };
 
 export default prisma;

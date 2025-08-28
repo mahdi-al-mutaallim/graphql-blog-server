@@ -1,20 +1,28 @@
 import jwt, { type JwtPayload } from "jsonwebtoken";
 import type { StringValue } from "ms";
 
-
-const generateJwtToken = async (payload: JwtPayload & { type: "access" | "refresh" }) => {
-  const secret = (payload.type === "access" ? process.env.ACCESS_SECRET : process.env.REFRESH_SECRET) || 'Secret'
-  const expiresIn = (payload.type === "access" ? process.env.ACCESS_EXPIRES : process.env.REFRESH_EXPIRES) || "30d";
-  return jwt.sign(payload, secret, { expiresIn: expiresIn as StringValue });
+type JwtTokenPayload = JwtPayload & {
+	userId: string;
+	type: "access" | "refresh";
 };
 
-const verifyJwtToken = async (token: string, tokenType: "access" | "refresh") => {
-  if (!token) {
-    return { success: false, decoded: null }
-  }
-  const secret = tokenType === "access" ? "accessTokenSecret" : "refreshTokenSecret"
-  const decoded = jwt.verify(token, secret)
-  return { success: true, decoded };
+const generateJwtToken = async (payload: JwtTokenPayload) => {
+	const secret = payload.type === "access" ? process.env.ACCESS_SECRET : process.env.REFRESH_SECRET;
+	const expiresIn = payload.type === "access" ? process.env.ACCESS_EXPIRES : process.env.REFRESH_EXPIRES;
+	if (!secret || !expiresIn) {
+		throw new Error("JWT secret or expiry not set in environment");
+	}
+	return jwt.sign({ userId: payload.userId }, secret, {
+		expiresIn: expiresIn as StringValue,
+	});
+};
+
+const verifyJwtToken = async (payload: { token: string; type: "access" | "refresh" }) => {
+	const secret = payload.type === "access" ? process.env.ACCESS_SECRET : process.env.REFRESH_SECRET;
+	if (!secret) {
+		throw new Error("JWT secret not set");
+	}
+	return jwt.verify(payload.token, secret) as JwtTokenPayload;
 };
 
 export const jwtHelpers = { generateJwtToken, verifyJwtToken };

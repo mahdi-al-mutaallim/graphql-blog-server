@@ -14,6 +14,11 @@ type Profile {
   user: User!
 }
 
+type ProfilePayload {
+  message: String!
+  data: User
+}
+
 type Post {
   id: ID!
   title: String!
@@ -23,13 +28,18 @@ type Post {
   author: User!
 }
 
+type PostPayload {
+  message: String!
+  post: Post
+}
+
 type AuthPayload {
  message: String!
- access_token:String
+ token:String
 }
 
 type Query {
-  profile(userId: ID!): Profile
+  profile: ProfilePayload
   users: [User!]!
   user(id: ID!): User
   posts: [Post!]!
@@ -39,8 +49,9 @@ type Query {
 type Mutation {
   signup(name: String!, email: String!, password: String!, bio:String): AuthPayload
   signin(email: String!, password: String!):AuthPayload
+  createPost(title: String!, content: String!):PostPayload
 }
 
-`
+`;
 
 export default typeDefs;
