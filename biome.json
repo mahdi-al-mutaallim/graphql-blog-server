@@ -3,7 +3,7 @@
 	"extends": [],
 	"files": {
 		"maxSize": 1048576,
-		"includes": ["**", "!prisma/generated"],
+		"includes": ["**", "!generated"],
 		"ignoreUnknown": false
 	},
 	"vcs": {
@@ -15,7 +15,7 @@
 	},
 	"linter": {
 		"enabled": true,
-		"includes": ["**", "!/prisma/generated/**"],
+		"includes": ["**", "!/generated/**"],
 		"rules": {
 			"recommended": true,
 			"a11y": {
@@ -46,7 +46,7 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"includes": ["**", "!/prisma/generated/**"],
+		"includes": ["**", "!/generated/**"],
 		"formatWithErrors": false,
 		"indentStyle": "tab",
 		"indentWidth": 2,

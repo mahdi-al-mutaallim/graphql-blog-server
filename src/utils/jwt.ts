@@ -1,10 +1,6 @@
-import jwt, { type JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import type { StringValue } from "ms";
-
-type JwtTokenPayload = JwtPayload & {
-	userId: string;
-	type: "access" | "refresh";
-};
+import type { JwtTokenPayload } from "@/types/jwt.js";
 
 const generateJwtToken = async (payload: JwtTokenPayload) => {
 	const secret = payload.type === "access" ? process.env.ACCESS_SECRET : process.env.REFRESH_SECRET;

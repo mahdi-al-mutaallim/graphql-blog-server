@@ -1,3 +1,3 @@
-import type { PrismaClient } from "@prisma/index.js";
+import type { PrismaClient } from "@prisma/client.js";
 
 export type Context = { prisma: PrismaClient; token: string | null };
