@@ -1,8 +1,21 @@
 const payloadType = `#graphql
-type Payload {
+
+type AuthPayload {
   success: Boolean!
   message: String!
-  data: Result
+  data: String
+}
+
+type ProfilePayload {
+  success: Boolean!
+  message: String!
+  data: Profile
+}
+
+type UserPayload {
+  success: Boolean!
+  message: String!
+  data: User
 }
 
 type UsersPayload {
@@ -11,13 +24,17 @@ type UsersPayload {
   data: [User!]!
 }
 
+type PostPayload {
+  success: Boolean!
+  message: String!
+  data: Post
+}
+
 type PostsPayload {
   success: Boolean!
   message: String!
   data: [Post!]!
 }
-
-union Result = Profile | User | Post
 `;
 
 export default payloadType;

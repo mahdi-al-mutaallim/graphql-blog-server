@@ -1,10 +1,10 @@
 const queryType = `#graphql
 type Query {
-  profile: Payload
+  profile: ProfilePayload
   users: UsersPayload
-  user(id: ID!): Payload
+  user(id: ID!): UserPayload
   posts: PostsPayload
-  post(id: ID!): Payload
+  post(id: ID!): PostPayload
 }
 `;
 

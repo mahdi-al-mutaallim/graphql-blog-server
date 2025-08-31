@@ -1,11 +1,11 @@
 const mutationType = `#graphql
 type Mutation {
-  signup(name: String!, email: String!, password: String!, bio:String): Payload
-  signin(email: String!, password: String!): Payload
-  createPost(post: PostInput!): Payload
-  updateProfile(bio: String): Payload
-  updatePost(id: String!, post: PostInput): Payload
-  deletePost(id: String!): Payload
+  signup(name: String!, email: String!, password: String!, bio:String): AuthPayload
+  signin(email: String!, password: String!): AuthPayload
+  updateProfile(bio: String!): ProfilePayload
+  createPost(post: PostInput!): PostPayload
+  updatePost(id: String!, post: PostInput): PostPayload
+  deletePost(id: String!): PostPayload
 }
 `;
 

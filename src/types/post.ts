@@ -3,6 +3,4 @@ import type { Prettify } from "./utility.js";
 
 export type Posts = Array<Post>;
 
-export type CreatePostInput = Prettify<Pick<Post, "title" | "content">>;
-
-export type UpdatePostInput = Prettify<Pick<Post, "id"> & Partial<Pick<Post, "title" | "content" | "published">>>;
+export type PostInput = Prettify<Pick<Post, "title" | "content" | "published">>;

@@ -9,9 +9,9 @@ type Post {
 }
 
 input PostInput {
-  title: String
-  content: String
-  published: Boolean
+  title: String!
+  content: String!
+  published: Boolean!
 }
 `;
 
