@@ -19,11 +19,11 @@ const profileMutation: ProfileMutation = {
 			if (!decoded) {
 				return { success: false, message: "You're not authorized!", data: null };
 			}
-      const result = await prisma.profile.upsert({
-        where: { userId: decoded.userId },
-        update: { bio },
-        create: { bio, userId: decoded.userId }
-      });
+			const result = await prisma.profile.upsert({
+				where: { userId: decoded.userId },
+				update: { bio },
+				create: { bio, userId: decoded.userId },
+			});
 
 			return { success: true, message: "Profile updated successfully", data: result };
 		},
