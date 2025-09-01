@@ -4,7 +4,8 @@ type Mutation {
   signin(email: String!, password: String!): AuthPayload
   updateProfile(bio: String!): ProfilePayload
   createPost(post: PostInput!): PostPayload
-  updatePost(id: String!, post: PostInput): PostPayload
+  updatePost(id: String!, post: PostUpdateInput!): PostPayload
+  publishPost(id: String!):PostPayload
   deletePost(id: String!): PostPayload
 }
 `;

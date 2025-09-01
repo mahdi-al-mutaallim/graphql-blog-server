@@ -13,6 +13,11 @@ input PostInput {
   content: String!
   published: Boolean!
 }
+input PostUpdateInput {
+  title: String
+  content: String
+  published: Boolean
+}
 `;
 
 export default postType;

@@ -8,6 +8,7 @@ type PostMutation = {
 	Mutation: {
 		createPost: Resolver<unknown, { post: PostInput }, Payload<Post | null>>;
 		updatePost: Resolver<unknown, { id: string; post: PostInput }, Payload<Post | null>>;
+		publishPost: Resolver<unknown, { id: string }, Payload<null>>;
 		deletePost: Resolver<unknown, { id: string }, Payload<null>>;
 	};
 };
@@ -46,6 +47,18 @@ const postMutation: PostMutation = {
 				include: { author: true },
 			});
 			return { success: true, message: "Post updated successfully", data: result };
+		},
+
+		publishPost: async (_parent, { id }, { prisma, token }) => {
+			if (!token) {
+				return { success: false, message: "You're not authorized!", data: null };
+			}
+			const decoded = await jwtHelpers.verifyJwtToken({ token, type: "access" });
+			if (!decoded) {
+				return { success: false, message: "You're not authorized!", data: null };
+			}
+			await prisma.post.update({ where: { id }, data: { published: true } });
+			return { success: true, message: "Post published successfully", data: null };
 		},
 
 		deletePost: async (_parent, { id }, { prisma, token }) => {

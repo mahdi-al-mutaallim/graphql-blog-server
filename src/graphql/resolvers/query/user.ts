@@ -24,6 +24,7 @@ const userQuery: UserQuery = {
 			const result = await prisma.user.findUnique({ where: { id } });
 			return { success: true, message: result ? "User retrieved successfully." : "User not found.", data: result };
 		},
+    
 	},
 };
 
