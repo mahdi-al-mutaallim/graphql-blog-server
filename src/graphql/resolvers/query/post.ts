@@ -14,7 +14,7 @@ const postQuery: PostQuery = {
 	Query: {
 		posts: async (_parent, _args, { prisma }) => {
 			const result = await prisma.post.findMany({
-				where: { published: true },
+				where: { },
 				orderBy: [{ createdAt: "desc" }],
 				include: { author: true },
 			});
@@ -25,7 +25,7 @@ const postQuery: PostQuery = {
 			};
 		},
 		post: async (_parent, { id }, { prisma }) => {
-			const result = await prisma.post.findUnique({ where: { id, published: true }, include: { author: true } });
+			const result = await prisma.post.findUnique({ where: { id }, include: { author: true } });
 			return {
 				success: !!result,
 				message: result ? "Post retrieved successfully." : "Post not found.",
